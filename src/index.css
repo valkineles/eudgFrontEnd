@@ -1,0 +1,8 @@
+html {
+  font-size: 62.5%;  /* 62.5% of 16px = 10px */
+}
+
+#root {
+  height: 100vh;
+  width: 100%;
+}
