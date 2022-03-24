@@ -1,27 +1,45 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-
+import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
+import Spinner from '../common/spinner/spinner';
 import Login from '../pages/login/login';
-import NotFound from '../pages/notfound/notfound';
 
-const LoginRoutes: React.FC = () => {
+const Forgot = React.lazy(() => import('../pages/forgot/forgot'));
+const Signup = React.lazy(() => import('../pages/signup/signup'));
+
+
+
+const LoginRoutes = () => {
+    const localization = useLocation();
+    console.log('-----------------Login Router-------------------', localization);
+
+
     return (
         <Routes>
             <Route path='/' >
-                <Route index element={<Login/>} />
+                <Route index element={<Login />} />
+
+                <Route
+                    path='forgot'
+                    element={
+                        <React.Suspense fallback={<Spinner/>}>
+                            <Forgot />
+                        </React.Suspense>
+
+                    }
+                />
                 <Route
                     path='signup'
                     element={
-                        <React.Suspense fallback={<>...</>}>
-                            signup
+                        <React.Suspense fallback={<Spinner/>}>
+                            <Signup />
                         </React.Suspense>
+
                     }
                 />
-                <Route path='*' element={<NotFound />} />
+
             </Route>
-
         </Routes>
-    )    
+    )
 }
-
 export default LoginRoutes;
+

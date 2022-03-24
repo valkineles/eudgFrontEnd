@@ -13,8 +13,8 @@ const Header = () => {
                 <Typography>
                     <a href='/' >
                         <img
-                            src={Logo}
-                            alt='Eu Digital'
+                            //  src={Logo}
+                            // alt='Eu Digital'
                         ></img>
                     </a>
                 </Typography>

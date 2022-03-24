@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             height: '100%',
             flexDirection: 'column',
-            backgroundColor:'#dedede',
+            backgroundColor: '#EBEBEB',
         },
         container: {
             display: 'flex',
@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
             padding: theme.spacing(2),
             display: 'flex',
             overflowX: 'hidden',
+            justifyContent: 'center',
         },
 
         avatar: {

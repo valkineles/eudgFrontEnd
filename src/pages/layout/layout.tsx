@@ -11,8 +11,7 @@ const Layout: React.FC = (): JSX.Element => {
         <div className={classes.root} >
             <header><Header /> </header>
             <main className={classes.main}> <Outlet /> </main>
-            
-            <footer><Footer /></footer>
+            {/* <footer><Footer /></footer> */}
         </div>
     )
 }

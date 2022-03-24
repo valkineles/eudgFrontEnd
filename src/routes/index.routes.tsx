@@ -1,30 +1,49 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Dashboard from '../pages/dashboard/dashboard';
 import Layout from '../pages/layout/layout';
-import NotFound from '../pages/notfound/notfound';
-import LoginRoutes from './login.routes';
+import Home from '../pages/home/home';
+import Spinner from '../common/spinner/spinner';
+
+const NotFound = React.lazy(() => import('../pages/notfound/notfound'));
+const LoginRoutes = React.lazy(() => import('../routes/login.routes'));
 
 const AppRoutes: React.FC = () => {
     return (
         <Routes>
-            <Route path="/" element={<Layout />}>
-                <Route index element={<Dashboard />} />
-                <Route
-                    path="about"
+            <Route path='/' element={<Layout />}>
+                <Route index element={<Home />} />
+
+                {/* <Route
+                    path='dashboard'
                     element={
-                        <React.Suspense fallback={<>...</>}>
-                            About
+                        <React.Suspense fallback={<div>Carregando.....</div>}>
+                            <Dashboard />
                         </React.Suspense>
+
+                    }
+                />  */}
+                {/* <Route
+                    path='about'
+                    element={
+                        <React.Suspense fallback={<div>Carregando.....</div>}>
+                            <AboutPage />
+                        </React.Suspense>
+
                     }
                 />
-                <Route path='*' element={<NotFound />} />
+     */}
+                <Route path="*" element={NotFound} />
             </Route>
+            <Route
+                path='login/*'
+                element={
+                    <React.Suspense fallback={<Spinner/>}>
+                        <LoginRoutes />
+                    </React.Suspense>
 
-            <Route path='user' element={<LoginRoutes />} />
-            {/* <Route path='*' element={<NotFound />} /> */}
-        </Routes>
-    )
+                }
+            />
+        </Routes>)
 };
 export default AppRoutes;
