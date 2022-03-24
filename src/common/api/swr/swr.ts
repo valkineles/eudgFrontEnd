@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 
-import useApi from '../api/api';
+import useApi from '../axios/api';
 
 export function useFetch<Data = any, Error = any>(url: string) {
   const { api } = useApi();

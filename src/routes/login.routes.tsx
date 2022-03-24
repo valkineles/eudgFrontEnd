@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
-import Spinner from '../common/spinner/spinner';
+import Spinner from '../common/components/spinner/spinner';
 import Login from '../pages/login/login';
 
 const Forgot = React.lazy(() => import('../pages/forgot/forgot'));

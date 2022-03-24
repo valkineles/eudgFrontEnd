@@ -1,8 +1,6 @@
-import { PushSpinner } from 'react-spinners-kit';
-
-import { useFetch } from '../../common/swr/swr';
+import { useFetch } from '../../common/api/swr/swr';
+import Spinner from '../../common/components/spinner/spinner';
 import helper from './home.helper';
-import Spinner from '../../common/spinner/spinner';
 interface IProducts {
     id: number;
     name: string;

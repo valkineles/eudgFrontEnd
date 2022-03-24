@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import Layout from '../pages/layout/layout';
 import Home from '../pages/home/home';
-import Spinner from '../common/spinner/spinner';
+import Spinner from '../common/components/spinner/spinner';
 
 const NotFound = React.lazy(() => import('../pages/notfound/notfound'));
 const LoginRoutes = React.lazy(() => import('../routes/login.routes'));
