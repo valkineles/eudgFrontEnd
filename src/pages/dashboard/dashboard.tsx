@@ -1,6 +1,8 @@
+import { useContext, useState } from 'react';
 import { useFetch } from '../../common/api/swr/swr';
 import Spinner from '../../common/components/spinner/spinner';
-import helper from './home.helper';
+import { useSearchContext } from '../../common/contexts/SearchContext';
+import helper from './dashboard.helper';
 interface IProducts {
     id: number;
     name: string;
@@ -8,19 +10,25 @@ interface IProducts {
     price: number;
 }
 
-const Home = () => {
+const Dashboard = () => {
     const classes = helper.useStyles();
-    const { data } = useFetch<IProducts[]>('products.json?brand=maybelline');
+    // const { data } = useFetch<IProducts[]>('products.json?brand=maybelline');
 
-    if (!data) {
+    // if (!data) {
 
-        return (
-            <Spinner />
-        );
-    }
+    //     return (
+    //         <Spinner />
+    //     );
+    // }
+
+     const  data = useSearchContext();
+     
+
+     console.log('aaaaaaaa',data);
+
     return (
         <div >
-            {data?.map((item) => (
+            {/* {data?.map((item) => (
                 <div className={classes.divContainer}>
 
                     <div className={classes.ImageItem}>
@@ -44,11 +52,11 @@ const Home = () => {
                     </div>
                 </div>
 
-            ))}
+            ))} */}
         </div>
     );
 
 
 }
 
-export default Home;
+export default Dashboard;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Layout from '../pages/layout/layout';
-import Home from '../pages/home/home';
+import Dashboard from '../pages/dashboard/dashboard';
 import Spinner from '../common/components/spinner/spinner';
 
 const NotFound = React.lazy(() => import('../pages/notfound/notfound'));
@@ -12,7 +12,7 @@ const AppRoutes: React.FC = () => {
     return (
         <Routes>
             <Route path='/' element={<Layout />}>
-                <Route index element={<Home />} />
+                <Route index element={<Dashboard />} />
 
                 {/* <Route
                     path='dashboard'
