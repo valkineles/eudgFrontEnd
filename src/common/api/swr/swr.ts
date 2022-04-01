@@ -10,5 +10,5 @@ export function useFetch<Data = any, Error = any>(url: string) {
     return response.data;
   });
 
-  return { data, error, mutate };
+  return { data, error, mutate, api };
 }

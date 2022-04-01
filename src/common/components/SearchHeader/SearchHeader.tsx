@@ -1,7 +1,9 @@
+import React, { useState } from 'react';
 
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { useSearchContext } from '../../contexts/SearchContext';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -47,21 +49,31 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const SearchHeader = () => {
-    const handleChange = (event: any) => {
-        console.log(event.target.value);
+    const {searchHandler} = useSearchContext();
 
+    const [nameSearch, setNameSearch] = useState('');
+
+    const handleSubmit = (event: any) => {
+        event?.preventDefault();
+        searchHandler(nameSearch);
     }
     return (
-        <Search>
-            <SearchIconWrapper>
-                <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-                placeholder="O que você procura?"
-                inputProps={{ 'aria-label': 'search' }}
-                onChange={handleChange}
-            />
-        </Search>
+        <form onSubmit={handleSubmit}>
+            <Search>
+                <SearchIconWrapper>
+                    <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                    name='nameSearch'
+                    value={nameSearch}
+                    placeholder="O que você procura?"
+                    inputProps={{ 'aria-label': 'search' }}
+                    onChange={(e)=>setNameSearch(e.target.value)}
+                />
+            </Search>
+        </form>
+
+
     )
 }
 

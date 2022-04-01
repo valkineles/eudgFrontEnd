@@ -1,35 +1,22 @@
-import { useContext, useState } from 'react';
-import { useFetch } from '../../common/api/swr/swr';
-import Spinner from '../../common/components/spinner/spinner';
 import { useSearchContext } from '../../common/contexts/SearchContext';
 import helper from './dashboard.helper';
-interface IProducts {
-    id: number;
-    name: string;
-    image_link: string;
-    price: number;
-}
 
 const Dashboard = () => {
     const classes = helper.useStyles();
-    // const { data } = useFetch<IProducts[]>('products.json?brand=maybelline');
 
-    // if (!data) {
+    const { productList } = useSearchContext();
 
-    //     return (
-    //         <Spinner />
-    //     );
-    // }
+    console.log(productList)
 
-     const  data = useSearchContext();
-     
 
-     console.log('aaaaaaaa',data);
+    if (productList.length === 0) {
+        return <div>nenhum dado encontrado</div>
+    }
 
     return (
         <div >
-            {/* {data?.map((item) => (
-                <div className={classes.divContainer}>
+            {productList?.map((item) => (
+                <div key={item.id} className={classes.divContainer}>
 
                     <div className={classes.ImageItem}>
                         <img className={classes.img}
@@ -52,7 +39,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-            ))} */}
+            ))}
         </div>
     );
 

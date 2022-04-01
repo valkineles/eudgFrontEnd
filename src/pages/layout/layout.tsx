@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { SearchContextProvider } from '../../common/contexts/SearchContext';
+
 
 import Footer from './footer';
 import Header from './header';
@@ -11,9 +11,7 @@ const Layout: React.FC = (): JSX.Element => {
 
     return (
         <div className={classes.root} >
-            <SearchContextProvider>
-                <header><Header /> </header>
-            </SearchContextProvider>
+            <header><Header /> </header>
             <main className={classes.main}> <Outlet /> </main>
             {/* <footer><Footer /></footer> */}
         </div>

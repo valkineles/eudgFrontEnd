@@ -1,6 +1,8 @@
-import React, { createContext, PropsWithChildren, useContext } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
+import useApi from '../api/axios/api';
 import { useFetch } from '../api/swr/swr';
 import Spinner from '../components/spinner/spinner';
+import { mutate } from 'swr'
 
 interface IProducts {
     id: number;
@@ -9,30 +11,43 @@ interface IProducts {
     price: number;
 }
 
-// interface ISearchContext {
-//     data(): IProducts[];
-// }
+interface ISearchContext {
+    productList: IProducts[];
+    searchHandler: (parameter: string) => void;
 
-const SearchContext = createContext({});
-// const SearchContext = createContext<ISearchContext>({} as ISearchContext);
+}
+
+const SearchContext = createContext<ISearchContext>({} as ISearchContext);
 
 export const SearchContextProvider = ({ children }: PropsWithChildren<{}>) => {
 
-    const { data } = useFetch<IProducts[]>('products.json?brand=maybelline');
+    const [product, setProduct] = useState<IProducts[]>();
+    const [key, setKey] = useState('products.json?brand=maybelline')
 
-    console.log('bbbbbbbbbbbbbbbb',data);
-    if (!data) {
+    const { data } = useFetch<IProducts[]>(key);
+
+    const searchHandler = async (param: string) => {
+        param ? setKey(`products.json?brand=${param}`) : setKey('products.json?brand=maybelline')
+    };
+
+    useEffect(() => {
+
+        setProduct(data);
+
+    }, [data])
+
+    if (!product) {
 
         return (
             <Spinner />
         );
-    }
-
+    };
 
     return (
         <SearchContext.Provider
             value={{
-                data,
+                productList: product,
+                searchHandler,
             }}
         >
             {children}
